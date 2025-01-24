@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js'></script>
+  <title>Color Changer v1</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 50px;
+      color: black;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    #red {
+      background-color: red;
+      color: white;
+      border: 2px solid black;
+    }
+    #green {
+      background-color: green;
+      color: white;
+      border: 2px solid black;
+    }
+    #Yellow {
+      background-color: Yellow;
+      color: black;
+      border: 2px solid black;
+    }
+    #off {
+      background-color: white;
+      color: black;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click a Button to Change Background Color</h1>
+  <button id="red">Red</button>
+  <button id="green">Green</button>
+  <button id="Yellow">Yellow</button>
+  <button id="off">Off</button>
+
+  <script>
+    const socket = io()
+    document.getElementById('red').addEventListener('click', function() {
+      document.body.style.backgroundColor = 'red';
+      document.body.style.color = 'white'
+      socket.emit('red')
+      console.log('sending to server red.. ')
+
+    });
+
+    document.getElementById('green').addEventListener('click', function() {
+      document.body.style.backgroundColor = 'green';
+      document.body.style.color = 'white'
+      socket.emit('green')
+      console.log('sending to server green.. ')
+
+    });
+
+    document.getElementById('Yellow').addEventListener('click', function() {
+      document.body.style.backgroundColor = 'yellow';
+      document.body.style.color = 'black'
+      socket.emit('yellow')
+      console.log('sending to server yellow.. ')
+    });
+    document.getElementById('off').addEventListener('click', function() {
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black'
+      socket.emit('off')
+      console.log('sending to server off.. ')
+    });
+  </script>
+</body>
+</html>
